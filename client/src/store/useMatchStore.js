@@ -101,9 +101,12 @@ export const useMatchStore = create((set) => ({
   unsubscribeFromNewMatches: () => {
     try {
       const socket = getSocket();
-      socket.off("newMatch");
+      if (socket) {
+        socket.off("newMatch");
+      }
     } catch (error) {
-      console.error("Failed to unsubscribe from new matches", error);
+      // Silently handle the "Socket is not initialized" error
+      // This is expected during logout when socket is already disconnected
     }
   },
 }));
