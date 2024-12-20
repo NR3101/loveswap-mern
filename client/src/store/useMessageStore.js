@@ -14,7 +14,6 @@ export const useMessageStore = create((set) => ({
         receiverId,
         content,
       });
-      console.log("res", res.data);
 
       set((state) => ({
         messages: [
